@@ -1,6 +1,7 @@
 //
 // Created by ritno on 2026/5/8.
 //
+//LQ19709
 #include <iostream>
 using namespace std;
 
@@ -9,7 +10,9 @@ int main(){
     int n;cin>>n;
     int ans=0;
     for (int i=1;i<=n;i++){
-        if ([](int x){
+        if ([](int x){//匿名函数
+			//idx:1->0->1->0……
+			//条件为x，当x除到0就停止
             for (int idx=1;x;idx^=1,x/=10){
                 if (x%2!=idx) return false;
             }
