@@ -1,141 +1,35 @@
-# 语言基础
-## 常用函数
-### 二分查找
-```c++
-binary_search(begin,end,x);
-//普通数组传入两个地址，6-字符串/vector传入迭代器
-//在有序数组中查找x
-//返回bool
-
-lower_bound(begin,end,x);
-//在有序数组中查找第一个大于等于x的值，返回指向该元素的迭代器
-
-upper_bound(begin,end,x);
-//在有序数组中查找第一个大于x的值，返回指向该元素的迭代器
-
-lower_bound(begin,end,x) - 1
-//在有序数组查找最后一个小于等于x的元素
-
-
-upper_bound(begin,end,x) && =x
-//在有序数组查找最后一个等于x的元素
-// 假设数组 a 已经排好序，长度为 n
-int* it = upper_bound(a, a + n, x);
-// 必须进行双重判断：
-// 1. it != a (确保前面有元素，不越界)
-// 2. *(it - 1) == x (确保找到的确实是 x，而不是比 x 小的数)
-if (it != a && *(it - 1) == x) {
-    int pos = (it - 1) - a;
-    cout << "最后一个等于 x 的下标是: " << pos << endl;
-} else {
-    cout << "数组中不存在等于 x 的元素" << endl;
-}
-
-
-lower_bound(begin,end,x)  -1
-//在有序数组查找最后一个小于x的元素
-
-upper_bound(begin,end,x)-upper_bound(begin,end,x);
-//单调序列中x的个数
-
-//迭代器是地址，迭代器-a为下标
-```
-
-### 全排列
-```c++
-vec.next_permutation()
-```
-生成当前序列的下一个排列，若存在下一个排列，将当前序列更改为下一个排列，返回true；
-若已经是最后一个排列，将序列更改为第一个排列，返回false。
-
-
-```c++
-vec.prev_permulation()
-```
-生成当前序列的上一个排列。
-若存在上一个排列，将当前序列更改为尚一个排列，返回true；
-若已经是第一个排列，将序列更改为最后一个排列，返回false。
-
-### 排序
-```c++
-#icnlude<algorithm>
-
-sort(begin,end,cmp);
-
-//默认为升序排序
-//降序排序：第三个参数改为 greater<int>()或自定义
-bool cmp(int a, int b) {
-    return a > b; // 降序：当前面的数大于后面的数时，不交换
-}
-sort(nums, nums + n, cmp);
-```
-
-
-### 去重
-
-```c++
-#icnlude<algorithm>
-
-sort();
-unique(begin,end);
-
-```
-去重之前必须先排序
-
-不实际去除元素，只将重复元素移到末尾
-
-返回一个指向第一个重复元素的迭代器
-
-最后使用erase()将重复元素删除
-
-
-### 时间复杂度
-
-O(n^n) > O(n!) > O(2^n) > 
-
-O(n^2) > O(n log n) > O(n) > 
-
-O(n^1/2) > O(log n) > O(1)
-
-![时间复杂度.png](assets/时间复杂度.png)
-
-时间复杂度一般不超过1e7
-
-### 空间复杂度
-
-一般不要超过所提供空间的80%
-
-### STL
-#### queue
+# STL
+## queue
 先进先出
 可以通过队列取出，实现数组的反转
 ```cpp
 
 ```
-#### priority_quene
+## priority_quene
 先进先出，优先有序队列，默认从大到小
 
-#### que
+## que
 双端队列
 
-#### stack
+## stack
 先进后出
 ```cpp
 
 ```
-#### set
+## set
 存储唯一元素，默认使用升序排序
 内部使用红黑树实现，保持元素的有序性。
 插入重复元素时，set会自动忽略。
 时间复杂度O(log n)
 
-```cpp
+```c++
 template <class Key,class Compare = less<Key>,class Allocator = allocator<Key>>
 //元素类型，元素之之间比较函数对象的类型（默认less按照元素的值进行比较），分配内存分配器类型
 class set;
 ```
-```cpp
-insert()
+```c++
+set<int> s;
+s.insert()
 erase()
 find()
 lower_bound()
@@ -162,18 +56,18 @@ set<int ,Mycompare> myset;
 ```
 
 
-#### multiset
+## multiset
 允许存储重复的元素
 默认升须排序
 ```cpp
 erase(x) //会删除全部相同的x元素
 erase(mst.find(x))//删除但一删除单一元素
 ```
-#### unordered_set
+## unordered_set
 无特定顺序，时间复杂度不稳定，使用哈希实现，只能储存不重复元素
 一般不使用
 
-#### pair
+## pair
 一个模板类，表示一对值的组合。
 可以将两个值组合在一起，传递储存和操作。
 位于utility头文件中。
@@ -200,7 +94,7 @@ pair <int,pair(int,int)>p2(1,make_pair(4,5));
 ```
 pair自带的排序规则：
 按照first成员进行升序排序，若相等，按照sencond成员进行升序排序。
-#### map
+## map
 * 关联容器，存放键值对，数据结构为红黑树
   Key 键
   T 值
@@ -242,7 +136,7 @@ class unordered_map;
 关联容器，储存键值对，不会根据键的顺序排序，而是哈希映射到储存桶
 * 极好的平均时间复杂度，极坏的最差时间复杂度
 
-#### list
+## list
 * 双向链表容器，插入和删除时间复杂度为O(1),访问和查找为O(n)，不适合频繁随机访问。
 * 以节点形式储存元素，用指针连接节点，使用频率不高
 * 具有双向性，可以在任意位置插入，删除和访问
@@ -270,12 +164,11 @@ erase()
 ...
 ```
 
-#### vector
+## vector
 * 动态数组容器，存相同类型数据.
 * 位于标准库<vector>，处于万能头文件<bits/stdc++>当中。
 * 可以自动调整大小，动态分配空间。
 * 元素可以索引访问，0——size-1。可以用[]运算符或at()函数来访问元素。
-
 
 ```c++
 push_back()//添加末尾元素
@@ -292,4 +185,3 @@ end()//指向最后一个元素之后位置的迭代器
 
 sort(vec.begin(),vec.end())
 ```
-
