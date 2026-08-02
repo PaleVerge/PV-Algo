@@ -1,6 +1,7 @@
 //
 // Created by whip on 2026/5/27.
 //
+//LQ3495
 #include <iostream>
 #include <vector>
 using namespace std;

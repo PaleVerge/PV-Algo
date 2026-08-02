@@ -1,6 +1,7 @@
 //
 // Created by ritno on 2026/5/17.
 //
+//LQ19732
 #include <iomanip>
 #include <cmath>
 #include <iostream>

@@ -1,6 +1,7 @@
 //
 // Created by whip on 2026/5/27.
 //
+//LQ19730
 #include <iostream>
 #include <iomanip>
 #include <vector>

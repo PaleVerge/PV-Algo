@@ -1,6 +1,7 @@
 //
 // Created by ritno on 2026/5/17.
 //
+//LQ3491
 #include <iostream>
 using namespace std;
 int digitcnt(int i){//计算i的位数

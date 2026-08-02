@@ -1,6 +1,7 @@
 //
 // Created by ritno on 2026/5/17.
 //
+//LQ1443
 #include <iostream>
 using namespace std;
 int main(){
