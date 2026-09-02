@@ -185,3 +185,14 @@ end()//指向最后一个元素之后位置的迭代器
 
 sort(vec.begin(),vec.end())
 ```
+
+## 查找数组中的最值
+
+```c++
+max_elent(vec.begin(),vec.end());
+```
+
+## 计算数组的和
+```c++
+accumulate(vec.begin(),vec.end(),0);
+```
