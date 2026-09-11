@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 #define N 6
+//交换两个整数
 void swap(int &a,int &b)
 {
 	int temp;
@@ -9,6 +10,7 @@ void swap(int &a,int &b)
 	b=temp;
 }
 
+//从标准输入读取n个数存入数组a（默认长度N）
 void inputArr(int a[],int n=N)
 {
 	int i;
@@ -16,6 +18,7 @@ void inputArr(int a[],int n=N)
 	cin>>a[i];
 }
 
+//输出数组a的前n个数（默认长度N）
 void outputArr(int a[],int n=N)
 {
 	int i;
@@ -23,6 +26,7 @@ void outputArr(int a[],int n=N)
 	cout<<a[i]<<" ";
 	cout<<endl;
 }
+//冒泡排序：对区间[beg,end]排序，order为'A'时升序，否则降序
 void sort(int a[],int beg=0,int end=N-1,char order='A')
 {
 	int i,j;
@@ -61,6 +65,7 @@ void sort(int a[],int beg=0,int end=N-1,char order='A')
 }
 
 
+//一维数组求和：求数组a前count个元素之和
 int sumArray(const int a[],const int &count)
 {
 	int i,sum=0;
@@ -69,6 +74,7 @@ int sumArray(const int a[],const int &count)
 	return sum;
 }
 
+//二维数组（列数为2）求和重载版本：求rows行所有元素之和
 int sumArray(const int a[][2],int rows)
 {
 	int i,j,sum=0;
@@ -82,6 +88,8 @@ int sumArray(const int a[][2],int rows)
 	return sum;
 }
 
+//向有序数组arr中插入newNumber：找到插入位置后，其后元素依次后移
+//numEle为当前元素个数（引用传出），数组已满时返回false
 bool insertArr(int arr[],int &numEle,int arrSize,int newNumber)
 {
 	int pos=0;
@@ -108,6 +116,7 @@ bool insertArr(int arr[],int &numEle,int arrSize,int newNumber)
 		return true;		
 	}	
 }
+//主函数：循环读入数字并插入有序数组，实时输出排序结果，直到数组满或用户选择停止
 int main()
 {
 	int arr[N]={0};
@@ -116,23 +125,23 @@ int main()
 	char more;
 	do
 	{
-		cout<<"please input a number:"<<endl;
+		cout<<"请输入一个数字："<<endl;
 		cin>>num;
 		success=insertArr(arr,count,N,num);
 		if(success==true)
 		{
-			cout<<"sorted array is: "<<endl;
+			cout<<"排序后的数组为："<<endl;
 			outputArr(arr,count);		
 			do
 			{
-				cout<<"Any more element? please input Y or N."<<endl;
+				cout<<"是否继续输入？请输入 Y 或 N。"<<endl;
 				cin>>more;
 			}while(more!='Y'&&more!='y'&&more!='N'&&more!='n');	
 			
 		}
 		else
 		{
-			cout<<"The array is full."<<endl;
+			cout<<"数组已满。"<<endl;
 			more='N';
 		}
 	}while(more=='Y'||more=='y');
