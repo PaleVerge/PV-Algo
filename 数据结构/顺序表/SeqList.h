@@ -18,16 +18,16 @@ public:
     int Locate(int index)const;
     int Search(T &x)const;
     bool getData(int index,T &x)const{
-        if (index>0 && index<=last+1){
-            x=data[index-1];
+        if (index>=0 && index<=last){
+            x=data[index];
             return true;
         }
         return false;
 
     };
     void setData(int index,T &x){
-        if (index>0 && index<=last+1){
-            data[index-1]=x;
+        if (index>=0 && index<=last){
+            data[index]=x;
         }
     };
     bool remove(int index);
@@ -36,15 +36,30 @@ public:
     bool isFull(){return(last == maxSize-1)?true:false;};
     void input();
     void output()const;
+    void output2()const;
     SeqList<T>& operator=(const SeqList<T>& L);
     void reverse();
     bool ishw();
+    void oddeven();
+    void huhuan(int n);
 protected:
     T* data;
     int maxSize;
     int last;
     void reSize(int newSize);
 };
+
+template <typename T>
+void SeqList<T>::huhuan(int n){
+    int len = last+1;
+    this->reSize(maxSize+n);
+    for (int i=0;i<n;++i){
+        this->insert(i+len,data[i]);
+    }
+    for (int i=0;i<n;++i){
+        this->remove(0);
+    }
+}
 template <typename T>
 bool SeqList<T>::ishw(){
     for(int i=0;i<last-i;++i){
@@ -53,6 +68,23 @@ bool SeqList<T>::ishw(){
     }
     return true;
 }
+
+template <typename T>
+void SeqList<T>::oddeven(){
+    SeqList<T> tmp(maxSize);
+    for (int i=0;i<=last;++i){
+        if (data[i]%2!=0){
+            tmp.insert(tmp.last+1,data[i]);
+        }
+    }
+    for (int i=0;i<=last;++i){
+        if (data[i]%2==0){
+            tmp.insert(tmp.last+1,data[i]);
+        }
+    }
+    *this = tmp;
+}
+
 template <typename T>
 void SeqList<T>::reverse(){
     for(int i=0;i<last-i;++i){
@@ -150,14 +182,19 @@ void SeqList<T>::input(){
 
 template<typename T>
 void SeqList<T>::output()const{
-    cout << "{ ";
+    cout << "{";
     for(int i=0;i<=last;++i){
-        cout << data[i];
-        if(i < last){
-            cout << " ";
-        }
+        cout<<" "<<data[i];
     }
     cout << " }" << endl;
+}
+template<typename T>
+void SeqList<T>::output2()const{
+    for(int i=0;i<=last;++i){
+        cout<<data[i];
+        if (i!=last)
+            cout<<",";
+    }
 }
 
 template<typename T>
